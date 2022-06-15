@@ -11,7 +11,7 @@ import UIKit
 import CoreLocation
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var cityLabel: UILabel!
     @IBOutlet var iconImage: UIImageView!
@@ -56,8 +56,6 @@ class ViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         searchTextField.delegate = self
-        
-        
         
         let currentDateTime = Date()
         let formatter = DateFormatter()
@@ -152,9 +150,7 @@ extension ViewController: WeatherManagerDelegate {
             
             
             self.tempLabel.text = "\(weather.currentWeather.temperatureString)°"
-//            self.iconImage.image = UIImage(named: weather.currentWeather.conditionName)
             self.iconImage.image = UIImage(named: self.getWeatherIcon(id: weather.currentWeather.conditionId))
-//            self.cityLabel.text = "\(weather.cityName), \(weather.country)"
             self.descLabel.text = weather.currentWeather.desc
             self.windLabel.text = "\(weather.currentWeather.windString) m/s"
             self.humidityLabel.text = "\(weather.currentWeather.humidityString) %"
@@ -163,8 +159,6 @@ extension ViewController: WeatherManagerDelegate {
             self.collectionView.reloadData()
             
             self.showUI()
-         
-            
         }
     }
     
@@ -210,29 +204,11 @@ extension ViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print(searchTextField.text!)
-//        searchTextField.resignFirstResponder()
         searchTextField.endEditing(true)
         return true
     }
-//
-//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//
-//        if let city = searchTextField.text {
-//            for character in city {
-//                if !character.isWhitespace {
-//                    return true
-//                }
-//              }
-//              return false
-//        } else {
-//            return false
-//        }
-//    }
-
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        
         
         if let city = searchTextField.text {
             for character in city {
@@ -241,13 +217,10 @@ extension ViewController: UITextFieldDelegate {
                     weatherManager.fetchGeocode(cityName: city)
                     searchTextField.text = ""
                 }
-              }
+            }
         }
-        
     }
-
 }
-
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -256,40 +229,17 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         }
         return 0
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        
-        
-        
+         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! CollectionViewCell
         
         if let weather = weather {
-//            cell.weatherImage.image = UIImage(named: (weather.hourlyForecast[indexPath.row].conditionName) )
             cell.weatherImage.image = UIImage(named: (self.getWeatherIcon(id: weather.hourlyForecast[indexPath.row].id)) )
             cell.tempLabel.text = "\(weather.hourlyForecast[indexPath.row].temperatureString)°"
             cell.timeLabel.text = weather.hourlyForecast[indexPath.row].timeString
         }
-        
-        
         return cell
-        
-        
     }
-
-
 }
-
-//extension UIViewController {
-//    func dismissKey()
-//    {
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer( target: self, action: #selector(UIViewController.dismissKeyboard))
-//        tap.cancelsTouchesInView = false
-//        view.addGestureRecognizer(tap)
-//    }
-//    @objc func dismissKeyboard()
-//    {
-//        view.endEditing(true)
-//    }
-//}
 

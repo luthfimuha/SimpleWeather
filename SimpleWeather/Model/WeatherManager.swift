@@ -8,20 +8,17 @@
 import Foundation
 import CoreLocation
 
-
-
-protocol  WeatherManagerDelegate {
+protocol WeatherManagerDelegate {
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel)
     func didUpdateGeocode(_ weatherManager: WeatherManager, geocode: GeocodeModel)
     func didFailWithError(error: Error)
     func didFailWithError(error: String)
 }
 
-
 struct WeatherManager {
     
     var geocodeURL = "https://api.openweathermap.org/geo/1.0/direct?appid=7c14ae68ceac5fece02a4708e1242768"
-
+    
     
     var forecastURL = "https://api.openweathermap.org/data/2.5/onecall?appid=7c14ae68ceac5fece02a4708e1242768&exclude=minutely&units=metric"
     
@@ -41,7 +38,7 @@ struct WeatherManager {
             performRequest(with: url, type: "geocode")
         }
     }
-
+    
     
     func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees){
         let urlString = "\(forecastURL)&lat=\(latitude)&lon=\(longitude)"
@@ -79,7 +76,6 @@ struct WeatherManager {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
-      
             
             let id = decodedData.current.weather[0].id
             let desc = decodedData.current.weather[0].main
@@ -106,9 +102,8 @@ struct WeatherManager {
                 dailyForecast.append(DailyForecast(time: i.dt, day_temp: i.temp.day, night_temp: i.temp.night, conditionID: i.weather[0].id, desc: i.weather[0].main))
             }
             
-            
             let weather = WeatherModel(currentWeather: currentWeather, hourlyForecast: hourlyForecast, dailyForecast: dailyForecast)
-
+            
             return weather
             
         } catch {
@@ -121,11 +116,10 @@ struct WeatherManager {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode([GeocodeData].self, from: geocodeData)
-//            print(decodedData)
             
             if decodedData.isEmpty {
                 delegate?.didFailWithError(error: "City Not Found")
-
+                
                 return nil
             }
             
@@ -136,18 +130,13 @@ struct WeatherManager {
                 let country = decodedData.first!.country
                 let geocode = GeocodeModel(name:name, lat: lat, lon: lon, country: country)
                 
-//                let geocode = GeocodeModel(name: "", lat: 0, lon: 0, country: "")
                 return geocode
             }
             
-            
-
         } catch {
             delegate?.didFailWithError(error: error)
             print("ERROR")
             return nil
         }
     }
-    
-    
 }

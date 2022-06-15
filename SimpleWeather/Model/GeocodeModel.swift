@@ -7,8 +7,7 @@
 
 import Foundation
 
-
-struct GeocodeModel {
+internal struct GeocodeModel {
     let name: String
     let lat: Double
     let lon: Double
