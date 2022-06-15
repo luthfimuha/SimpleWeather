@@ -82,20 +82,13 @@
 		066BDECE26B7E04000D83C65 /* SimpleWeather */ = {
 			isa = PBXGroup;
 			children = (
+				8DC49DD62859907300727B7A /* View */,
+				8DC49DD52859905300727B7A /* Assets */,
+				8DC49DD42859903700727B7A /* Controller */,
 				066BDEF326B7FCCD00D83C65 /* Model */,
-				066BDEF026B7E5EC00D83C65 /* fonts */,
 				066BDECF26B7E04000D83C65 /* AppDelegate.swift */,
 				066BDED126B7E04000D83C65 /* SceneDelegate.swift */,
-				066BDED326B7E04000D83C65 /* ViewController.swift */,
-				066BDED526B7E04000D83C65 /* Main.storyboard */,
-				066BDED826B7E04400D83C65 /* Assets.xcassets */,
-				066BDEDA26B7E04400D83C65 /* LaunchScreen.storyboard */,
 				066BDEDD26B7E04400D83C65 /* Info.plist */,
-				0604C4C226B98D3F00D87715 /* CollectionViewCell.swift */,
-				0604C4C326B98D4000D87715 /* CollectionViewCell.xib */,
-				0604C4F426BA53CA00D87715 /* DailyViewController.swift */,
-				0604C4F726BA902200D87715 /* DailyCollectionViewCell.swift */,
-				0604C4F826BA902200D87715 /* DailyCollectionViewCell.xib */,
 			);
 			path = SimpleWeather;
 			sourceTree = "<group>";
@@ -120,6 +113,37 @@
 				0604C4BB26B9668200D87715 /* GeocodeModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8DC49DD42859903700727B7A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				066BDED326B7E04000D83C65 /* ViewController.swift */,
+				0604C4F426BA53CA00D87715 /* DailyViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8DC49DD52859905300727B7A /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				066BDED826B7E04400D83C65 /* Assets.xcassets */,
+				066BDEF026B7E5EC00D83C65 /* fonts */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		8DC49DD62859907300727B7A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				066BDED526B7E04000D83C65 /* Main.storyboard */,
+				066BDEDA26B7E04400D83C65 /* LaunchScreen.storyboard */,
+				0604C4C226B98D3F00D87715 /* CollectionViewCell.swift */,
+				0604C4C326B98D4000D87715 /* CollectionViewCell.xib */,
+				0604C4F726BA902200D87715 /* DailyCollectionViewCell.swift */,
+				0604C4F826BA902200D87715 /* DailyCollectionViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

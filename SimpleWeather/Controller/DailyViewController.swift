@@ -8,32 +8,27 @@
 import UIKit
 
 class DailyViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
     
     let dataSource: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday"]
     
     @IBOutlet var cityLabel: UILabel!
-//    var weather: WeatherModel?
     var dailyForecast: [DailyForecast] = []
     var location: String?
-
+    
     @IBOutlet var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
         let nib = UINib(nibName: "DailyCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "dailyCell")
         
-//        print(dailyForecast)
-        
         if let location = location {
             cityLabel.text = location
         }
-        
-        
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -44,7 +39,7 @@ class DailyViewController: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dailyForecast.count
     }
- 
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -56,12 +51,7 @@ class DailyViewController: UIViewController, UICollectionViewDelegate, UICollect
         cell.weatherImage.image = UIImage(named: dailyForecast[indexPath.row].imageName)
         cell.descLabel.text = dailyForecast[indexPath.row].desc
         
-        
         return cell
         
-        
     }
-    
-
-
 }

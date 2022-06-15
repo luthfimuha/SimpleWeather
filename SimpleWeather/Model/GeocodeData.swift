@@ -7,17 +7,9 @@
 
 import Foundation
 
-struct GeocodeData: Codable {
-    
+internal struct GeocodeData: Codable {
     let name: String
     let lat: Double
     let lon: Double
     let country: String
-    
-    
 }
-
-//struct Result: Codable {
-//    let lat: Double
-//    let lon: Double
-//}
